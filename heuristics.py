@@ -1,0 +1,39 @@
+"""
+heuristics.py
+-------------
+Heuristics for the basic maze problem (Question 6).
+
+A heuristic is a function heuristic(state, problem) that returns an estimate
+of the cost of the cheapest path from 'state' to a goal. For a MazeProblem,
+'state' is a (row, col) tuple and the goal position is 'problem.goal'.
+"""
+
+import math
+
+import util
+
+
+def nullHeuristic(state, problem=None):
+    """The trivial heuristic: it knows nothing, so it always says 0."""
+    return 0
+
+
+def manhattanHeuristic(state, problem):
+    """
+    Q6: the Manhattan distance from 'state' to problem.goal:
+        |row1 - row2| + |col1 - col2|
+    """
+    row, col = state
+    goalRow, goalCol = problem.goal
+    return abs(row - goalRow) + abs(col - goalCol)
+
+
+def euclideanHeuristic(state, problem):
+    """
+    Q6: the straight-line (Euclidean) distance from 'state' to problem.goal.
+    """
+    row, col = state
+    goalRow, goalCol = problem.goal
+    rowDifference = row - goalRow
+    colDifference = col - goalCol
+    return math.sqrt(rowDifference ** 2 + colDifference ** 2)
